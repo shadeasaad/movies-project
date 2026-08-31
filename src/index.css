@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --primary-color: #00bc7d;
+  --primary-hover: #00e096;
+  --bg-color: #f8fafc;
+  --text-color: #0f172a;
+  --nav-bg: #ffffff;
+  --drawer-bg: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --search-bg: #e6e6e6;
+  --search-border: #b9b9b9;
+}
+
+.dark {
+  --primary-color: #00bc7d;
+  --primary-hover: #00e096;
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --nav-bg: #000000;
+  --drawer-bg: #121212;
+  --card-bg: #18181b;
+  --card-border: #27272a;
+  --search-bg: #121212;
+  --search-border: #27272a;
+}
+
+@layer utilities {
+  .center-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .center-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.swiper-pagination {
+  bottom: 1.5rem !important;
+}
+
+.swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 16px !important;
+  background-color: #ffffff !important;
+  border-radius: 9999px !important;
+}
+.swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
