@@ -24,6 +24,7 @@ function Anime() {
   }
 
   return (
+    
     <div className="w-full pb-16 pt-1">
       <SearchCom />
 

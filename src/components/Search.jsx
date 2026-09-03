@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Search as SearchIcon, Loader2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { searchMulti } from '../service/api';
+
 function Search({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -95,9 +97,15 @@ function Search({ isOpen, onClose }) {
               : 'https://via.placeholder.com/92x138?text=No+Image';
 
             return (
-              <div 
+              <Link 
                 key={item.id}
-                className="flex items-center gap-4 p-2.5 rounded-xl hover:bg-white/5 transition-colors cursor-pointer"
+                to={`/watch/${item.id}`}
+                onClick={() => {
+                  setQuery("");
+                  onClose?.();
+                }}
+                className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-colors cursor-pointer border-b last:border-none block"
+                style={{ borderColor: "var(--card-border)" }}
               >
                 <img 
                   src={posterUrl} 
@@ -110,7 +118,7 @@ function Search({ isOpen, onClose }) {
                     {item.media_type} {year ? `• (${year})` : ''}
                   </p>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

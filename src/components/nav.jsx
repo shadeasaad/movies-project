@@ -8,16 +8,11 @@ import Search from "./Search";
 
 function Nav() {
   const navLinks = [
-    { id: 1, label: "Home", href: "/", icon: Home },
+    { id: 1, label: "Home", href: "/home", icon: Home },
     { id: 2, label: "Movies", href: "/movies", icon: Film },
     { id: 3, label: "TV", href: "/TV", icon: Tv },
     { id: 4, label: "Anime", href: "/anime", icon: Tv },
-    {
-      id: 5,
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/shadyasaad/",
-    },
-    { id: 6, label: "GitHub", href: "https://github.com/shadeasaad" },
+    { id: 5, label: "sign up ", href: "/", icon: Tv },
   ];
 
   const settingsIconRef = useRef(null);
@@ -196,42 +191,29 @@ function Nav() {
         <div className="hidden sm:flex items-center gap-6">
           <ul className="flex flex-row items-center gap-1">
             {navLinks.map((item) => {
-              const isExternal = item.href.startsWith("http");
               const isActive = currentLocation === item.href;
 
               return (
                 <li key={item.id} className="group">
-                  {isExternal ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-bold relative p-4 font-sans opacity-75 hover:opacity-100 transition-all flex items-center gap-2"
-                      style={{ color: "var(--text-color)" }}
-                    >
-                      {item.label}
-                    </a>
-                  ) : (
-                    <Link
-                      to={item.href}
-                      className={`text-sm font-bold relative p-4 font-sans transition-all flex items-center gap-2 ${
-                        isActive ? "" : "opacity-80 hover:opacity-100 duration-300"
-                      }`}
-                      style={isActive ? { color: "var(--primary-color)" } : { color: "var(--text-color)" }}
-                    >
-                      {isActive ? (
-                        <span
-                          className="w-2 h-2 rounded-full inline-block transition-all duration-700"
-                          style={{ backgroundColor: "var(--primary-color)" }}
-                        />
-                      ) : (
-                        <span
-                          className="w-2 h-2 rounded-full inline-block bg-transparent group-hover:bg-[var(--text-color)] transition-all duration-300"
-                        />
-                      )}
-                      {item.label}
-                    </Link>
-                  )}
+                  <Link
+                    to={item.href}
+                    className={`text-sm font-bold relative p-4 font-sans transition-all flex items-center gap-2 ${
+                      isActive ? "" : "opacity-80 hover:opacity-100 duration-300"
+                    }`}
+                    style={isActive ? { color: "var(--primary-color)" } : { color: "var(--text-color)" }}
+                  >
+                    {isActive ? (
+                      <span
+                        className="w-2 h-2 rounded-full inline-block transition-all duration-700"
+                        style={{ backgroundColor: "var(--primary-color)" }}
+                      />
+                    ) : (
+                      <span
+                        className="w-2 h-2 rounded-full inline-block bg-transparent group-hover:bg-[var(--text-color)] transition-all duration-300"
+                      />
+                    )}
+                    {item.label}
+                  </Link>
                 </li>
               );
             })}
@@ -300,61 +282,26 @@ function Nav() {
 
           <ul className="flex flex-col gap-2">
             {navLinks.map((item) => {
-              const isExternal = item.href.startsWith("http");
               const IconComponent = item.icon;
               const isActive = currentLocation === item.href;
 
               return (
                 <li key={item.id}>
-                  {isExternal ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 px-4 py-3 rounded-lg opacity-75 hover:opacity-100 hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-sm font-medium"
-                      style={{ color: "var(--text-color)" }}
-                      onClick={() => setActive(false)}
-                    >
-                      {IconComponent && <IconComponent className="w-5 h-5" />}
-                      {item.label}
-                    </a>
-                  ) : (
-                    <Link
-                      to={item.href}
-                      className={`flex items-center gap-4 px-4 py-3 rounded-lg transition-colors text-sm font-medium ${
-                        isActive ? "font-bold bg-black/5 dark:bg-white/10" : "opacity-75 hover:opacity-100 hover:bg-black/5 dark:hover:bg-white/5"
-                      }`}
-                      style={isActive ? { color: "var(--primary-color)" } : { color: "var(--text-color)" }}
-                      onClick={() => setActive(false)}
-                    >
-                      {IconComponent && <IconComponent className="w-5 h-5" />}
-                      {item.label}
-                    </Link>
-                  )}
+                  <Link
+                    to={item.href}
+                    className={`flex items-center gap-4 px-4 py-3 rounded-lg transition-colors text-sm font-medium ${
+                      isActive ? "font-bold bg-black/5 dark:bg-white/10" : "opacity-75 hover:opacity-100 hover:bg-black/5 dark:hover:bg-white/5"
+                    }`}
+                    style={isActive ? { color: "var(--primary-color)" } : { color: "var(--text-color)" }}
+                    onClick={() => setActive(false)}
+                  >
+                    {IconComponent && <IconComponent className="w-5 h-5" />}
+                    {item.label}
+                  </Link>
                 </li>
               );
             })}
           </ul>
-        </div>
-
-        <div className="flex flex-row gap-3 pb-4">
-          <a
-            href="https://www.linkedin.com/in/shadyasaad/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-2.5 px-4 border border-cyan-500/40 rounded-lg text-cyan-600 dark:text-cyan-400 text-sm font-medium hover:bg-cyan-500/10 transition-colors backdrop-blur-md"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://github.com/shadeasaad"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-2.5 px-4 text-black rounded-lg text-sm font-medium hover:opacity-90 transition-opacity backdrop-blur-md"
-            style={{ backgroundColor: "var(--primary-color)" }}
-          >
-            GitHub
-          </a>
         </div>
       </div>
 

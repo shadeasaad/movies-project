@@ -29,7 +29,10 @@ function TV() {
   }
 
   return (
+    <>
+              
     <div className="w-full pb-16 pt-1">
+
       <SearchCom />
 
       <section className="popular-tv pt-10 px-4 sm:px-5">
@@ -50,6 +53,7 @@ function TV() {
         </div>
       </section>
     </div>
+          </>
   );
 }
 

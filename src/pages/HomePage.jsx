@@ -37,6 +37,8 @@ function HomePage() {
 
   return (
     <div className="w-full pb-16">
+             
+
       <ImgSlider />
       <SearchCom />
 

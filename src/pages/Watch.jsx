@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetails, getMovieReviews } from "../service/api";
 import Loader from "../components/Loader";
+import Nav from "../components/nav";
 
 function Watch() {
   const { id } = useParams();
@@ -38,6 +39,8 @@ function Watch() {
 
   return (
     <div className="w-full min-h-screen text-white pt-24 px-4 sm:px-8 pb-16">
+             <Nav />
+
       <div className="relative w-full h-[40vh] sm:h-[50vh] rounded-2xl overflow-hidden mb-8">
         <img
           src={

@@ -45,6 +45,7 @@ function Movies() {
 
   return (
     <div className="w-full pt-1 pb-16">
+
       <SearchCom />
 
       <section className="popular-movies pt-10 px-4 sm:px-5">

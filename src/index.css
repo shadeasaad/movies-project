@@ -76,3 +76,18 @@ body {
 .swiper-wrapper {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
+
+.invalid {
+   border: 2px solid rgb(202, 0, 0);
+  
+}
+.invalid-text {
+   color: red;
+  
+}
+
+
+.valid{
+  border: 2px solid green;
+
+}
