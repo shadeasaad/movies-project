@@ -79,15 +79,11 @@ body {
 
 .invalid {
    border: 2px solid rgb(202, 0, 0);
-  
 }
 .invalid-text {
    color: red;
-  
 }
 
-
-.valid{
+.valid {
   border: 2px solid green;
-
 }

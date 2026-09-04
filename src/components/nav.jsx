@@ -1,18 +1,52 @@
 import { useRef, useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Search as SearchIcon, Menu, X, Home, Film, Tv, Settings, RotateCw, CloudMoon, Contrast, AlignLeft, Minimize2, Palette } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Search as SearchIcon, Menu, X, Home, Film, Tv, Settings, RotateCw, CloudMoon, Contrast, AlignLeft, Minimize2, Palette, User, LogOut } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import NavSet from "./NavSet";
 import gsap from "gsap";
 import Search from "./Search";
 
 function Nav() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentLocation = location.pathname;
+
+  const [currentUser, setCurrentUser] = useState(() => {
+    const stored = localStorage.getItem("currentUser");
+    try {
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("currentUser");
+    if (storedUser) {
+      try {
+        setCurrentUser(JSON.parse(storedUser));
+      } catch (e) {
+        setCurrentUser(null);
+      }
+    } else {
+      setCurrentUser(null);
+    }
+  }, [location]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    setCurrentUser(null);
+    navigate("/login");
+  };
+
   const navLinks = [
-    { id: 1, label: "Home", href: "/home", icon: Home },
+    { id: 1, label: "Home", href: "/", icon: Home },
     { id: 2, label: "Movies", href: "/movies", icon: Film },
     { id: 3, label: "TV", href: "/TV", icon: Tv },
     { id: 4, label: "Anime", href: "/anime", icon: Tv },
-    { id: 5, label: "sign up ", href: "/", icon: Tv },
+    currentUser
+      ? { id: 5, label: currentUser.userName, href: "#", icon: User, isUser: true }
+      : { id: 5, label: "Login / Register", href: "/login", icon: User },
   ];
 
   const settingsIconRef = useRef(null);
@@ -38,9 +72,6 @@ function Nav() {
   }, []);
 
   const [active, setActive] = useState(false);
-  const location = useLocation();
-  const currentLocation = location.pathname;
-
   const [activeSet, setActiveSet] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -194,9 +225,14 @@ function Nav() {
               const isActive = currentLocation === item.href;
 
               return (
-                <li key={item.id} className="group">
+                <li key={item.id} className="group flex items-center">
                   <Link
                     to={item.href}
+                    onClick={(e) => {
+                      if (item.isUser) {
+                        e.preventDefault();
+                      }
+                    }}
                     className={`text-sm font-bold relative p-4 font-sans transition-all flex items-center gap-2 ${
                       isActive ? "" : "opacity-80 hover:opacity-100 duration-300"
                     }`}
@@ -214,6 +250,17 @@ function Nav() {
                     )}
                     {item.label}
                   </Link>
+
+                  {item.isUser && (
+                    <button
+                      onClick={handleLogout}
+                      title="Logout"
+                      className="text-xs px-2 py-1 ml-1 rounded bg-neutral-800 text-neutral-300 hover:text-white hover:bg-red-600 transition-colors cursor-pointer flex items-center gap-1"
+                    >
+                      <LogOut size={14} />
+                      Logout
+                    </button>
+                  )}
                 </li>
               );
             })}
@@ -286,18 +333,37 @@ function Nav() {
               const isActive = currentLocation === item.href;
 
               return (
-                <li key={item.id}>
+                <li key={item.id} className="flex flex-col">
                   <Link
                     to={item.href}
+                    onClick={(e) => {
+                      if (item.isUser) {
+                        e.preventDefault();
+                      } else {
+                        setActive(false);
+                      }
+                    }}
                     className={`flex items-center gap-4 px-4 py-3 rounded-lg transition-colors text-sm font-medium ${
                       isActive ? "font-bold bg-black/5 dark:bg-white/10" : "opacity-75 hover:opacity-100 hover:bg-black/5 dark:hover:bg-white/5"
                     }`}
                     style={isActive ? { color: "var(--primary-color)" } : { color: "var(--text-color)" }}
-                    onClick={() => setActive(false)}
                   >
                     {IconComponent && <IconComponent className="w-5 h-5" />}
                     {item.label}
                   </Link>
+
+                  {item.isUser && (
+                    <button
+                      onClick={() => {
+                        setActive(false);
+                        handleLogout();
+                      }}
+                      className="mt-1 flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-red-400 hover:bg-red-500/10 transition-colors w-full"
+                    >
+                      <LogOut className="w-5 h-5" />
+                      Logout
+                    </button>
+                  )}
                 </li>
               );
             })}

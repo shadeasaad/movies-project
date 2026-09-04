@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import { BasicSchema } from "../validation/schema";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 
 function SignUp() {
@@ -10,8 +10,7 @@ function SignUp() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const onSubmit = (values, actions) => {
-    console.log("submitted values:", values);
-    navigate("/home");
+    navigate("/");
   };
 
   const formik = useFormik({
@@ -37,13 +36,11 @@ function SignUp() {
 
         <form
           className="mt-8 space-y-6"
-          action="#"
-          method="POST"
           onSubmit={formik.handleSubmit}
         >
           <div className="space-y-4">
-            <div>
-              <label className="text-sm font-medium text-neutral-300 block mb-1">
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-neutral-300 block">
                 Username
               </label>
               <input
@@ -52,20 +49,16 @@ function SignUp() {
                 value={formik.values.userName}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`appearance-none rounded-lg relative block w-full px-3 py-3 border border-neutral-700 bg-neutral-800 text-white placeholder-neutral-500 ${
-                  formik.errors.userName && formik.touched.userName
-                    ? "invalid"
-                    : "valid"
-                }`}
+                className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-neutral-700 bg-neutral-800 text-white placeholder-neutral-500"
                 placeholder="Enter your username"
               />
-            </div>
               {formik.touched.userName && formik.errors.userName && (
-                <p className="invalid-text">{formik.errors.userName}</p>
+                <p className="text-sm text-red-500 mt-1">{formik.errors.userName}</p>
               )}
+            </div>
 
-            <div>
-              <label className="text-sm font-medium text-neutral-300 block mb-1">
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-neutral-300 block">
                 Email Address
               </label>
               <input
@@ -74,20 +67,16 @@ function SignUp() {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`appearance-none rounded-lg relative block w-full px-3 py-3 border border-neutral-700 bg-neutral-800 text-white placeholder-neutral-500 ${
-                  formik.errors.email && formik.touched.email
-                    ? "invalid"
-                    : "valid"
-                }`}
+                className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-neutral-700 bg-neutral-800 text-white placeholder-neutral-500"
                 placeholder="name@example.com"
               />
-            </div>
               {formik.touched.email && formik.errors.email && (
-                <p className="invalid-text">{formik.errors.email}</p>
+                <p className="text-sm text-red-500 mt-1">{formik.errors.email}</p>
               )}
+            </div>
 
-            <div>
-              <label className="text-sm font-medium text-neutral-300 block mb-1">
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-neutral-300 block">
                 Password
               </label>
               <div className="relative">
@@ -97,11 +86,7 @@ function SignUp() {
                   value={formik.values.password}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`appearance-none rounded-lg relative block w-full px-3 py-3 pr-10 border border-neutral-700 bg-neutral-800 text-white placeholder-neutral-500 ${
-                    formik.errors.password && formik.touched.password
-                      ? "invalid"
-                      : "valid"
-                  }`}
+                  className="appearance-none rounded-lg relative block w-full px-3 py-3 pr-10 border border-neutral-700 bg-neutral-800 text-white placeholder-neutral-500"
                   placeholder="••••••••"
                 />
                 <button
@@ -112,13 +97,13 @@ function SignUp() {
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
-            </div>
               {formik.touched.password && formik.errors.password && (
-                <p className="invalid-text">{formik.errors.password}</p>
+                <p className="text-sm text-red-500 mt-1">{formik.errors.password}</p>
               )}
+            </div>
 
-            <div>
-              <label className="text-sm font-medium text-neutral-300 block mb-1">
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-neutral-300 block">
                 Confirm Password
               </label>
               <div className="relative">
@@ -128,12 +113,7 @@ function SignUp() {
                   value={formik.values.confirmPassword}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`appearance-none rounded-lg relative block w-full px-3 py-3 pr-10 border border-neutral-700 bg-neutral-800 text-white placeholder-neutral-500 ${
-                    formik.errors.confirmPassword &&
-                    formik.touched.confirmPassword
-                      ? "invalid"
-                      : "valid"
-                  }`}
+                  className="appearance-none rounded-lg relative block w-full px-3 py-3 pr-10 border border-neutral-700 bg-neutral-800 text-white placeholder-neutral-500"
                   placeholder="confirm password"
                 />
                 <button
@@ -144,11 +124,11 @@ function SignUp() {
                   {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
-            </div>
               {formik.touched.confirmPassword &&
                 formik.errors.confirmPassword && (
-                  <p className="invalid-text border-0">{formik.errors.confirmPassword}</p>
+                  <p className="text-sm text-red-500 mt-1">{formik.errors.confirmPassword}</p>
                 )}
+            </div>
           </div>
 
           <div className="flex items-center text-sm">
@@ -180,6 +160,13 @@ function SignUp() {
             >
               Get Started
             </button>
+          </div>
+
+          <div className="text-center text-sm text-neutral-400">
+            Already have an account?{" "}
+            <Link to="/login" className="text-emerald-500 hover:underline font-medium">
+              Login
+            </Link>
           </div>
         </form>
       </div>
