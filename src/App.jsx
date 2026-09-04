@@ -1,4 +1,4 @@
-import Nav from "./components/Nav";
+import Nav from "./components/nav";
 import Footer from "./components/Footer";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
