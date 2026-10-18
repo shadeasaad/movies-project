@@ -1,9 +1,10 @@
-import { Film, Tv, Search, Star, MessageSquare, Smartphone, ShieldCheck, Code2, HelpCircle } from "lucide-react";
+import { Film, Tv, Search, Star, MessageSquare, Smartphone, ShieldCheck, Code2, HelpCircle, Globe } from "lucide-react";
 
 function Guide() {
   return (
     <div className="w-full min-h-screen pt-24 px-4 sm:px-8 pb-16 transition-colors duration-300">
       
+      {/* 1. Hero Section */}
       <div className="max-w-6xl mx-auto text-center py-12 sm:py-20">
         <span 
           className="inline-block text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full mb-4 uppercase tracking-wider"
@@ -19,13 +20,14 @@ function Guide() {
         </p>
       </div>
 
+      {/* Tech Stack Badges */}
       <div className="max-w-4xl mx-auto mb-16 text-center">
         <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-6 flex items-center justify-center gap-2">
           <Code2 size={18} style={{ color: "var(--primary-color)" }} />
           التقنيات والأدوات المستخدمة في المشروع
         </h3>
         <div className="flex flex-wrap justify-center gap-3">
-          {["React.js", "Tailwind CSS", "TMDB API", "React Router", "Lucide Icons", "JavaScript (ES6+)"].map((tech, index) => (
+          {["React.js", "Tailwind CSS", "TMDB API", "React Router", "Lucide Icons", "Vercel Deployment", "JavaScript (ES6+)"].map((tech, index) => (
             <span 
               key={index}
               className="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-transform hover:scale-105"
@@ -37,26 +39,46 @@ function Guide() {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto mb-20">
+      {/* 2. Overview / About & Deployment Section */}
+      <div className="max-w-5xl mx-auto mb-20 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div 
-          className="p-8 sm:p-10 rounded-3xl border shadow-xl"
+          className="p-8 rounded-3xl border shadow-xl flex flex-col justify-between"
           style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
         >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-3">
-            <ShieldCheck className="w-8 h-8" style={{ color: "var(--primary-color)" }} />
-            فكرة المشروع وهدفه
-          </h2>
-          <p className="text-gray-300 leading-relaxed text-sm sm:text-base mb-4">
-            تم تطوير هذا المشروع باستخدام أحدث تقنيات الويب (React و Tailwind CSS) بهدف توفير تجربة تصفح سينمائية متكاملة للمستخدم تشبه المنصات العالمية. يتيح الموقع للمستخدمين استعراض المحتوى بناءً على التصنيفات المختلفة (أفلام، مسلسلات، أعمال رائجة وقادمة) مع توفير محرك بحث فوري وسريع ودعم كامل للوضع الداكن والفاتح.
-          </p>
+          <div>
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
+              <ShieldCheck className="w-7 h-7" style={{ color: "var(--primary-color)" }} />
+              فكرة المشروع وهدفه
+            </h2>
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+              تم تطوير هذا المشروع باستخدام أحدث تقنيات الويب (React و Tailwind CSS) بهدف توفير تجربة تصفح سينمائية متكاملة للمستخدم تشبه المنصات العالمية مع دعم الوضع الداكن والفاتح.
+            </p>
+          </div>
+        </div>
+
+        <div 
+          className="p-8 rounded-3xl border shadow-xl flex flex-col justify-between"
+          style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
+        >
+          <div>
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
+              <Globe className="w-7 h-7" style={{ color: "var(--primary-color)" }} />
+              الاستضافة والنشر (Vercel)
+            </h2>
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+              تم رفع ونشر الموقع بالكامل على منصة <span className="font-bold text-white">Vercel</span> السحابية، مما يضمن أداءً سريعاً جداً (High Performance)، واستقراراً تاماً، وإمكانية الوصول للموقع عبر رابط مباشر من أي مكان وعلى أي جهاز.
+            </p>
+          </div>
         </div>
       </div>
 
+      {/* 3. Key Features Grid */}
       <div className="max-w-6xl mx-auto mb-20">
         <h2 className="text-2xl sm:text-3xl font-bold mb-10 text-center">أهم مميزات الموقع (Key Features)</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
+          {/* Feature 1 */}
           <div 
             className="p-6 rounded-2xl border transition-transform duration-300 hover:-translate-y-1"
             style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
@@ -70,6 +92,7 @@ function Guide() {
             </p>
           </div>
 
+          {/* Feature 2 */}
           <div 
             className="p-6 rounded-2xl border transition-transform duration-300 hover:-translate-y-1"
             style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
@@ -83,6 +106,7 @@ function Guide() {
             </p>
           </div>
 
+          {/* Feature 3 */}
           <div 
             className="p-6 rounded-2xl border transition-transform duration-300 hover:-translate-y-1"
             style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
@@ -96,6 +120,7 @@ function Guide() {
             </p>
           </div>
 
+          {/* Feature 4 */}
           <div 
             className="p-6 rounded-2xl border transition-transform duration-300 hover:-translate-y-1"
             style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
@@ -109,6 +134,7 @@ function Guide() {
             </p>
           </div>
 
+          {/* Feature 5 */}
           <div 
             className="p-6 rounded-2xl border transition-transform duration-300 hover:-translate-y-1"
             style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
@@ -122,6 +148,7 @@ function Guide() {
             </p>
           </div>
 
+          {/* Feature 6 */}
           <div 
             className="p-6 rounded-2xl border transition-transform duration-300 hover:-translate-y-1"
             style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
@@ -138,6 +165,7 @@ function Guide() {
         </div>
       </div>
 
+      {/* 4. How to Use Section */}
       <div className="max-w-4xl mx-auto mb-20">
         <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">دليل استخدام الموقع (How to Use)</h2>
         
@@ -168,7 +196,7 @@ function Guide() {
         </div>
       </div>
 
-    
+      {/* 5. FAQ Section */}
       <div className="max-w-4xl mx-auto">
         <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center flex items-center justify-center gap-2">
           <HelpCircle size={28} style={{ color: "var(--primary-color)" }} />
@@ -187,8 +215,8 @@ function Guide() {
           </div>
 
           <div className="p-5 rounded-2xl border" style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}>
-            <h4 className="font-bold mb-2 text-base">س: هل يدعم الموقع الوضع الليلي والنهاري؟</h4>
-            <p className="text-sm text-gray-400">ج: نعم، الموقع مصمم ليدعم التبديل بين الوضع الداكن (Dark Mode) والفاتح (Light Mode) لضمان راحة عين المستخدم.</p>
+            <h4 className="font-bold mb-2 text-base">س: اين يتم استضافة وتشغيل الموقع؟</h4>
+            <p className="text-sm text-gray-400">ج: الموقع منشور ومرفوع على منصة Vercel السحابية لضمان عمله بكفاءة وسرعة عالية على الإنترنت.</p>
           </div>
         </div>
       </div>
