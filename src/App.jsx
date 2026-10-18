@@ -7,10 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HomePage from "./pages/HomePage";
 import Movies from "./pages/Movies";
 import TV from "./pages/TV";
-import Anime from "./pages/Anime";
 import Watch from "./pages/Watch";
-import SignUp from "./pages/SignUp";
-import LogIn from "./pages/Login";
+import Guide from "./pages/Guide";
+
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -26,13 +25,11 @@ function AppLayout() {
       {showHeaderFooter && <Nav />}
       <div className="flex-grow">
         <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<LogIn />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/TV" element={<TV />} />
-          <Route path="/anime" element={<Anime />} />
           <Route path="/watch/:id" element={<Watch />} />
+          <Route path="/Guide" element={<Guide />} />
         </Routes>
       </div>
       {showHeaderFooter && <Footer />}

@@ -79,16 +79,7 @@ export const getTopRatedTv = async () => {
   }
 };
 
-export const getAnimeShows = async () => {
-  try {
-    const response = await fetch(`${API_URL}/discover/tv?api_key=${API_KEY}&with_genres=16&with_original_language=ja`);
-    const data = await response.json();
-    return normalizeResults(data.results);
-  } catch (err) {
-    console.error("Failed to fetch anime:", err);
-    return [];
-  }
-};
+
 export const getMovieDetails = async (id) => {
   try {
     const response = await fetch(`${API_URL}/movie/${id}?api_key=${API_KEY}`);

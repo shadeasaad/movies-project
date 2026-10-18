@@ -12,7 +12,7 @@ function MovieCard({ movie }) {
             }
             alt={movie.title}
           />
-          <p className="rate absolute top-2 right-2 bg-[var(--primary-color)] text-white text-xs font-bold px-2 py-1 rounded-full z-20">
+          <p className="rate absolute  top-2 right-2 bg-[var(--primary-color)] text-white text-xs font-bold px-2 py-1 rounded-full ">
             {movie.vote_average?.toFixed(1)}
           </p>
         </div>

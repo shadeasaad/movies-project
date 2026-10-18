@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Search as SearchIcon, Menu, X, Home, Film, Tv, Settings, RotateCw, CloudMoon, Contrast, AlignLeft, Minimize2, Palette, User, LogOut } from "lucide-react";
+import { Search as SearchIcon, Menu,User2Icon, X, Home, Film, Tv, Settings, RotateCw, CloudMoon, Contrast, AlignLeft, Minimize2, Palette, User, LogOut } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import NavSet from "./NavSet";
 import gsap from "gsap";
@@ -11,27 +11,9 @@ function Nav() {
   const navigate = useNavigate();
   const currentLocation = location.pathname;
 
-  const [currentUser, setCurrentUser] = useState(() => {
-    const stored = localStorage.getItem("currentUser");
-    try {
-      return stored ? JSON.parse(stored) : null;
-    } catch {
-      return null;
-    }
-  });
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("currentUser");
-    if (storedUser) {
-      try {
-        setCurrentUser(JSON.parse(storedUser));
-      } catch (e) {
-        setCurrentUser(null);
-      }
-    } else {
-      setCurrentUser(null);
-    }
-  }, [location]);
+
+ 
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
@@ -43,10 +25,8 @@ function Nav() {
     { id: 1, label: "Home", href: "/", icon: Home },
     { id: 2, label: "Movies", href: "/movies", icon: Film },
     { id: 3, label: "TV", href: "/TV", icon: Tv },
-    { id: 4, label: "Anime", href: "/anime", icon: Tv },
-    currentUser
-      ? { id: 5, label: currentUser.userName, href: "#", icon: User, isUser: true }
-      : { id: 5, label: "Login / Register", href: "/login", icon: User },
+    { id: 4, label: "User Guide", href: "/Guide", icon: User2Icon },
+   
   ];
 
   const settingsIconRef = useRef(null);
@@ -217,6 +197,7 @@ function Nav() {
             className="w-8 h-8 rounded-full object-contain"
             style={{ backgroundColor: "var(--primary-color)" }}
           />
+          <h1><span className="font-bold" style={{ color: "var(--primary-color)" }}>Movie App</span></h1>
         </div>
 
         <div className="hidden sm:flex items-center gap-6">
@@ -251,16 +232,7 @@ function Nav() {
                     {item.label}
                   </Link>
 
-                  {item.isUser && (
-                    <button
-                      onClick={handleLogout}
-                      title="Logout"
-                      className="text-xs px-2 py-1 ml-1 rounded bg-neutral-800 text-neutral-300 hover:text-white hover:bg-red-600 transition-colors cursor-pointer flex items-center gap-1"
-                    >
-                      <LogOut size={14} />
-                      Logout
-                    </button>
-                  )}
+                 
                 </li>
               );
             })}
